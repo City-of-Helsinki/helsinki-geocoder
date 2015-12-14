@@ -20,9 +20,11 @@ Get a hold of the address data for lookups (available from a WFS endpoint hosted
     >>> from HelsinkiGeocoder import HelsinkiGeocoder
 
 Initialize a geocoder object with the address data we downloaded earlier. This loads the entire data into memory as a dictionary.
+
     >>> coder = HelsinkiGeocoder('osoitteet.json')
 
 Geocode addresses by passing them as a parameter to the function geocode.
+
     >>> coder.geocode('kauppakartanonkatu 5')
     {'geometry': {'coordinates': [25504628.0, 6677331.0], 'type': 'Point'}, 'properties': {'postitoimipaikka': 'Helsinki', 'osoitenumero2': None, 'gatan': 'Handelshusgatan', 'staden': 'Helsingfors', 'tyyppi': 1, 'e': 25504628, 'n': 6677331, 'osoitenumero': 5, 'postinumero': '00930', 'osoitekirjain': None, 'id': 13992.0, 'gml_id': 'PKS_osoiteluettelo.fid--498474c_15191789947_-5a49', 'osoitenumero_teksti': '5', 'katunimi': 'Kauppakartanonkatu', 'kaupunki': 'Helsinki'}, 'type': 'Feature'}
 
