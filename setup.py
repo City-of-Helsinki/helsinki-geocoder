@@ -5,4 +5,4 @@ except ImportError:
 
 setup(name='HelsinkiGeocoder',
     version='0.1.0',
-    packages=['HelsinkiGeocoder.HelsinkiGeocoder'])
+    py_modules=['HelsinkiGeocoder'])
