@@ -16,7 +16,9 @@ class HelsinkiGeocoder():
 
     def load_data(self, addr_datafile):
         try:
-            self.addresses = json.load(open(addr_datafile, 'r'))['features']
+            self.addresses = json.load(
+            open(addr_datafile, 'r', 
+            encoding='iso-8859-15'))['features']
         except:
             sys.exit('Couldn\'t read the address data. Is it GeoJSON?')
 
@@ -71,7 +73,7 @@ class HelsinkiGeocoder():
             # only continue the search if similarity ratio exceeds ARBITRARY threshold
             # this just barely allows "hakaniemen halli" to be matched to "hakaniemen kauppahalli"
             if ratios[best_index] < 0.84:
-                print(street_name)
+                print(street_name.encode('ascii', errors='ignore'))
                 return None
 
             street = self.addr_dict[best_match]
