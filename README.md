@@ -23,6 +23,13 @@ Initialize a geocoder object with the address data we downloaded earlier. This l
 
     >>> coder = HelsinkiGeocoder('osoitteet.json')
 
+If need be, you can also filter places using filter function:
+
+    >>> helfilter = lambda place: place['properties']['postitoimipaikka'] == 'Helsinki'
+    >>> coder = HelsinkiGeocoder('osoitteet.json', filter_func)
+
+Function should return True for places to include and False for places to skip.
+
 Geocode addresses by passing them as a parameter to the function geocode.
 
     >>> coder.geocode('kauppakartanonkatu 5')

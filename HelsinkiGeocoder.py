@@ -4,7 +4,8 @@ import re
 from difflib import SequenceMatcher
 
 class HelsinkiGeocoder():
-    def __init__(self, addr_datafile):
+    def __init__(self, addr_datafile, filter_func=None):
+        self.filter_func = filter_func
         self.load_data(addr_datafile)
         self.pattern = re.compile("^([^\d^/]*)(\s*[-\d]*)(\s*[A-ö]*)")
 
@@ -23,6 +24,11 @@ class HelsinkiGeocoder():
         # value for a street name is a dict: keys are house numbers on that street
         self.addr_dict = {}
         for place in self.addresses:
+
+            # Skip places filter returns false for
+            if self.filter_func and not self.filter_func(place):
+                continue
+
             street = place['properties']['katunimi'].lower()
 
             #if key for current street doesn't exist, add it
